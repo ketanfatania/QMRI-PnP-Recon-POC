@@ -148,7 +148,7 @@ switch denoiser_type
 end
 
 % -- Replace input layer in lgraph and build network
-lgraph = replaceLayer(lgraph,'Input_input',larray);
+lgraph = replaceLayer(lgraph,lgraph.Layers(1,1).Name,larray);
 Net = assembleNetwork(lgraph);
 % plot(Net)                                     % To visualise the network
 
