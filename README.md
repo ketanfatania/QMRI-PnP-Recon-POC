@@ -1,4 +1,4 @@
-# Plug-and-Play Quantitative MRI Reconstruction using Deep Denoisers (Proof of Concept) (IEEE ISBI 2022)
+# Plug-and-Play Magnetic Resonance Fingerprinting based Quantitative MRI Reconstruction using Deep Denoisers (Proof of Concept) (IEEE ISBI 2022)
 
 [Ketan Fatania](https://researchportal.bath.ac.uk/en/persons/ketan-fatania), Carolin M. Pirkl, Marion I. Menzel, Peter Hall and [Mohammad Golbabaee](https://mgolbabaee.wordpress.com)
 
@@ -58,7 +58,7 @@ A gridded EPI subsampling pattern was used to subsample approximately 771 k-spac
 
 ## Proof of Concept
 
-This work is a proof of concept for Quantitative MRI with certain caveats: The TSMIs reconstructed were real-valued, uniform FFT was used, and the acquisition processes were single-coiled simulations with gridded subsampling patterns.
+This work is a proof of concept for Magnetic Resonance Fingerprinting based Quantitative MRI with certain caveats: The TSMIs reconstructed were real-valued, uniform FFT was used, and the acquisition processes were single-coiled simulations with gridded subsampling patterns. We plan to address these issues in future research.
 
 <br/>
 
@@ -151,7 +151,7 @@ Note: For more information on how the ONNX model is imported to Matlab, see the 
 
 ## Citation
 
-If you found this research and/or repository useful, please cite this paper:
+If you found this research and / or repository useful, please cite this paper:
 
 ```
 @inproceedings{ref:fatania2022,
