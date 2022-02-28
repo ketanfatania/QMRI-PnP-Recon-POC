@@ -1,15 +1,17 @@
 function [x, ind, density] = FISTA_deepz(data, param)
 %
-% NOTE:%%%%%%%%%%%%  THIS CODE IS COSTOMIZED FOR ISMRM 19 SUBMISSION and is a CASCADE approach not FULLY ITERATIVE
+% NOTE: This is an old implementation of LRTV. For the LRTV algortihm please use codes available at:
+% https://github.com/mgolbabaee/LRTV-MRFResnet-for-MRFingerprinting
+% function [X] = solve_LRTV(data, ELR, TV, param)
 %
-%  solves     min_x {  0.5*|y-F.forward(x)|_2^2 + param.K |Wx|_(1,2)   + MRFNET for NMR parmeter estimation   }
+%  solves     min_x {  0.5*|y-F.forward(x)|_2^2 + param.K |x|_TV   + MRFNET for NMR parmeter estimation   }
 %
 %  Inputs:
 %
 %         y           % observed data
 %         F           % pointer to measurement matrix structure
 %         D.macth     % deep matching
-%         K           % wavelet (group) soft thresholding
+%         K           % Total Variation (TV) norm soft thresholding parameter
 %         step        % FISTA stepsize
 %         tol         % premature stopping criteria |err_old-err_new| < tol
 %         max_iter    % maximum number of iterations
@@ -64,7 +66,6 @@ for i = 1:max_iter
     done = 0;
     while ~done
         x2    =   x - grad1 * step;
-        %[~,x2]=  wavethresh_group(x2, step*param.K);
         
         if param.K>0
         x2  = [reshape(real(x2),N,[]); reshape(imag(x2),N,[])];
@@ -94,7 +95,7 @@ for i = 1:max_iter
     t = t +1;
     
     obj = cvxobj + param.K*val;
-    fprintf('=== Iter=%i, Obj_FISTA: |y-Ax|^2  + la|W|_1,2 =%e\n', i,obj);
+    fprintf('=== Iter=%i, Obj_FISTA: |y-Ax|^2  + la|x|_TV =%e\n', i,obj);
     
     if abs(obj-obj_prev)/obj <tol; break;end
     obj_prev = obj;
@@ -112,56 +113,3 @@ disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n')
 end
 
 
-
-
-
-
-
-function [val,x] = wavethresh(x,K)
-%disp('Wavelet soft thresholding');
-L = size(x,3);
-J = floor(log2(size(x,1)));
-cr=[];ci=[];
-sr=[];si=[];
-for i =1:L
-    [cr(i,:),sr(:,:,i)] = wavedec2(real(x(:,:,i)),J,'db4');
-    [ci(i,:),si(:,:,i)] = wavedec2(imag(x(:,:,i)),J,'db4');
-end
-val = sum(abs([cr(:);ci(:)]));
-
-if nargout > 1
-    disp('Wavelet soft thresholding');
-    cr = wthresh(cr,'s',K);
-    ci = wthresh(ci,'s',K);
-    
-    for i =1:L
-        x(:,:,i)= waverec2(cr(i,:),sr(:,:,i),'db4')  + 1j*waverec2(ci(i,:),si(:,:,i),'db4') ;
-    end
-end
-end
-
-
-function [val,x] = wavethresh_group(x,K)
-
-L = size(x,3);
-J = floor(log2(size(x,1)));
-cr=[];ci=[];
-sr=[];si=[];
-for i =1:L
-    [cr(i,:),sr(:,:,i)] = wavedec2(real(x(:,:,i)),J,'db4');
-    [ci(i,:),si(:,:,i)] = wavedec2(imag(x(:,:,i)),J,'db4');
-end
-tmp = sqrt( sum(abs([cr;ci]).^2,1) );
-val = sum(tmp);
-
-if nargout > 1
-    disp('Wavelet soft thresholding');
-    tmp = max(tmp -K,0)./tmp;
-    cr = bsxfun(@times, tmp,cr);
-    ci = bsxfun(@times, tmp,ci);
-    
-    for i =1:L
-        x(:,:,i)= waverec2(cr(i,:),sr(:,:,i),'db4')  + 1j*waverec2(ci(i,:),si(:,:,i),'db2') ;
-    end
-end
-end
