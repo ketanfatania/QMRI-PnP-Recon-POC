@@ -104,9 +104,9 @@ for i = 1:max_iter
     
     % -- Print progress metrics
     normalized_y_measurements_data_fidelity = norm(reshape(y-F.forward(x), 1, [])) / norm(y(:));
-    normalized_tsmi_data_fidelity = norm(reshape(gt_tsmi-x, 1, [])) / norm(gt_tsmi(:));
+    normalized_tsmi_solution_error = norm(reshape(gt_tsmi-x, 1, [])) / norm(gt_tsmi(:));
     fprintf('-- Normalized_Y_Measurements_Data_Fidelity = %e \n', normalized_y_measurements_data_fidelity);
-    fprintf('-- Normalized_TSMI_Data_Fidelity = %e \n', normalized_tsmi_data_fidelity);  
+    fprintf('-- Normalized_TSMI_Solution_Error = %e \n', normalized_tsmi_solution_error);  
     
     
     % **************** Step 2 - The Neural Proximal Step ****************
