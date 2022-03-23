@@ -1,5 +1,7 @@
 # Plug-and-Play Magnetic Resonance Fingerprinting based Quantitative MRI Reconstruction using Deep Denoisers (Proof of Concept) (IEEE ISBI 2022)
 
+![visitor badge](https://visitor-badge.glitch.me/badge?page_id=ketanfatania.QMRI-PnP-Recon-POC&right_color=brightgreen&left_text=Visitors%20as%20of%202022-03-23)
+
 [Ketan Fatania](https://researchportal.bath.ac.uk/en/persons/ketan-fatania), Carolin M. Pirkl, Marion I. Menzel, Peter Hall and [Mohammad Golbabaee](https://mgolbabaee.wordpress.com)
 
 Paper: [arXiv](https://arxiv.org/abs/2202.05269)
