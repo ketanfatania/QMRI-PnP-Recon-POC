@@ -4,7 +4,7 @@
 
 [Ketan Fatania](https://researchportal.bath.ac.uk/en/persons/ketan-fatania), Carolin M. Pirkl, Marion I. Menzel, Peter Hall and [Mohammad Golbabaee](https://mgolbabaee.wordpress.com)
 
-Paper: [arXiv](https://arxiv.org/abs/2202.05269)
+Paper: [IEEE ISBI 2022](https://doi.org/10.1109/ISBI52829.2022.9761603), [arXiv](https://doi.org/10.48550/arXiv.2202.05269)
 
 <br/>
 
@@ -60,7 +60,7 @@ A gridded EPI subsampling pattern was used to subsample approximately 771 k-spac
 
 ## Proof of Concept
 
-This work is a proof of concept for Magnetic Resonance Fingerprinting based Quantitative MRI with certain caveats: The TSMIs reconstructed were real-valued, uniform FFT was used, and the acquisition processes were single-coiled simulations with gridded subsampling patterns. We plan to address these issues in future research.
+This work is a proof of concept for Magnetic Resonance Fingerprinting based Quantitative MRI with certain caveats: the TSMIs reconstructed were real-valued, uniform FFT was used, and the acquisition processes were single-coiled simulations with gridded subsampling patterns. We plan to address these issues in future research.
 
 <br/>
 
@@ -159,9 +159,11 @@ If you found this research and / or repository useful, please cite this paper:
 @inproceedings{ref:fatania2022,
     author = {Fatania, Ketan and Pirkl, Carolin M. and Menzel, Marion I. and Hall, Peter and Golbabaee, Mohammad},
     booktitle = {2022 IEEE 19th International Symposium on Biomedical Imaging (ISBI)},
-    title = {A Plug-and-Play Approach to Multiparametric Quantitative MRI: Image Reconstruction using Pre-Trained Deep Denoisers},
-    code = {https://github.com/ketanfatania/QMRI-PnP-Recon-POC},
-    year = {2022}
+    title = {A Plug-and-Play Approach To Multiparametric Quantitative MRI: Image Reconstruction Using Pre-Trained Deep Denoisers},
+    year = {2022},
+    pages= {1-4},
+    doi = {10.1109/ISBI52829.2022.9761603},
+    code = {https://github.com/ketanfatania/QMRI-PnP-Recon-POC}
     }
 ```
 
